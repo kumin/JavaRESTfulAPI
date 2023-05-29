@@ -9,6 +9,7 @@ import com.api.repos.BookRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @RestController
 @RequestMapping("/v1")
@@ -29,11 +30,8 @@ public class BookControl {
                                 @RequestParam(name="limit", defaultValue="10") int limit){
         Pageable pagination = PageRequest.of(page, limit);
 
-        Page<Book> pageBooks = this.bookRepo.findAll(pagination);
         List<Book> result = new ArrayList<>();
-        for (Book book : pageBooks) {
-            result.add(book);
-        }
+        this.bookRepo.findAll(pagination).forEach(result::add);
 
         return result;
     }

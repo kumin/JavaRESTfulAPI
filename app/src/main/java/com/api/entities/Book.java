@@ -1,6 +1,7 @@
 package com.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Book {
             },
             mappedBy = "books"
     )
+    @JsonIgnore
     List<Collection> collections;
 
     @Override

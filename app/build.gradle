@@ -12,6 +12,8 @@ plugins {
     id 'application'
     // Use spring boot framework
     id 'org.springframework.boot' version '3.1.0'
+    // Build docker image
+    id 'com.google.cloud.tools.jib' version '3.3.2'
 }
 
 apply plugin: 'io.spring.dependency-management'
