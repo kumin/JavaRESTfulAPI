@@ -1,15 +1,19 @@
 package com.api.controllers;
 
 import com.api.entities.Book;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
 import com.api.repos.BookRepo;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.Optional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1")
@@ -23,6 +27,11 @@ public class BookControl {
     @PostMapping("/book")
     public Book newBook(@RequestBody Book newBook) {
         return this.bookRepo.save(newBook);
+    }
+
+    @GetMapping("/book/{id}")
+    public Optional<Book> getBook(@PathVariable Long id) {
+        return this.bookRepo.findById(id);
     }
 
     @GetMapping("/book/list")
